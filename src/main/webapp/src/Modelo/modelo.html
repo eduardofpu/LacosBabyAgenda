@@ -1,0 +1,214 @@
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-7 col-md-offset-3">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">Modelo</h3>
+                  </div>
+                  <div class="panel-body">
+
+                    <button type="button" ng-hide="showAddEditUser" ng-click="show()" class="btn  btn-primary  btn-lg  aw-btn-full-width">
+                      Novo Modelo
+                    </button>
+
+<button  ng-hide="showAddEditUser" type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-warning btn-lg  aw-btn-full-width">Voltar
+  <span  class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+      </button>
+
+<button type="button"  class="btn  btn-success  btn-lg  aw-btn-full-width"  ng-hide="showAddEditUser" >
+<a href="#/VisualizarModelo">Visualizar</a>
+<span  class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+</button>
+
+
+
+  <form  ng-hide="!showAddEditUser" name="form" role="form" >
+
+
+    <!-- Modal Dialog -->
+   <div class="modal fade" id="confirmSave" role="dialog" aria-labelledby="confirmDeleteLabe" aria-hidden="true">
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+           <h4 class="modal-title">Cadastrar Modelos</h4>
+         </div>
+         <div class="modal-body">
+           <p>Deseja Salvar ?</p>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+           <button type="button" class="btn btn-danger" data-dismiss="modal"  id="confirm"  ng-click="saveMorador(m)">Salvar</button>
+         </div>
+       </div>
+     </div>
+   </div>
+
+
+    <div ng-show="form.email.$dirty" >
+         <div  ng-show="form.email.$error.required" class="alert alert-danger" role="alert">Campo Email é obrigatório </div>
+            <div  ng-show="form.email.$error.email" class="alert alert-danger" role="alert">Email inválido </div>
+
+
+    </div>
+
+
+    <div ng-show="form.modelo.$dirty" >
+      <div  ng-show="form.modelo.$error.required" class="alert alert-danger" role="alert">
+     <span>Campo Modelo é obrigatório</span></div>
+    </div>
+
+    <div ng-show="form.cor.$dirty" >
+      <div  ng-show="form.cor.$error.required" class="alert alert-danger" role="alert">
+     <span>Campo cor é obrigatório</span></div>
+    </div>
+
+
+    <div ng-show="form.tamanho.$dirty" >
+      <div  ng-show="form.tamanho.$error.required" class="alert alert-danger" role="alert">
+     <span>Campo tamanho é obrigatório</span></div>
+    </div>
+
+    <div ng-show="form.valor.$dirty" >
+      <div  ng-show="form.valor.$error.required" class="alert alert-danger" role="alert">
+     <span>Campo valor é obrigatório</span></div>
+    </div>
+
+
+
+
+
+
+
+<img ng-src="{{m.mimeType}},{{m.file}}" width="70" class="img-circle img80_80" />
+
+
+                          Avatar:
+               <br />
+                 <!--id="myFile"--> <!--ng-hide="showAddEditformulario" ng-click="show()"-->
+                    <input   type="file" class="btn btn-danger btn-xs"   ng-model="m.file" accept="image/*"
+                       multiple app-filereader ng-change="updateLinkImage(m.file[0])" />
+
+                    <br />
+
+
+  <div class="form-group">
+      <div ng-class="{'has-error': form.nome$touched && (form.nome.$error.required) , 'has-success':form.nome.$valid}">
+            <label>Modelo:</label>
+                <input class="form-control"  type="text" placeholder="Modelo" ng-model="m.modelo" required name="modelo">
+             </div>
+          </div>
+
+
+ <div class="form-group input-group">
+   <div class="form-group" ng-class="{'has-error': form.cor.$invalid ,'has-success': form.cor.$valid}">
+     <label>Cor:</label>
+   <input for="cor" name="cor"   class="form-control"   type="text" placeholder="Cor" ng-model="m.cor"
+    autofocus required >
+  </div>
+ </div>
+
+
+ <div class="form-group input-group">
+   <div class="form-group" ng-class="{'has-error': form.tamanho.$invalid ,'has-success': form.tamanho.$valid}">
+     <label>Tamanho:</label>
+   <input for="tamanho" name="cor"   class="form-control"   type="text" placeholder="tamanho" ng-model="m.tamanho"
+    autofocus required >
+  </div>
+ </div>
+
+ <div class="form-group input-group">
+   <div class="form-group" ng-class="{'has-error': form.valor.$invalid ,'has-success': form.valor.$valid}">
+     <label>Valor:</label>
+   <input for="valor" name="valor"  type="text" class="form-control"   placeholder="valor" ng-model="m.valor"
+    autofocus required >
+  </div>
+ </div>
+
+
+
+
+
+ <!--ng-disabled="form.$invalid"-->
+       <button  class="btn btn-success btn-s"   type="submit" data-toggle="modal" data-target="#confirmSave">
+              <span class="glyphicon glyphicon-upload"></span> Salvar </button>
+
+
+                   <button type="reset"  class="btn btn-danger btn-s">
+                <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+          <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Voltar</button>
+
+
+
+  </form>
+  <br><br>
+
+  <div class="row">
+                   <div class="col-lg-50">
+
+                       <div class="table-responsive" ng-hide="showAddEditUser">
+                           <table class="table table-bordered table-hover table-striped">
+
+                             <div class="blocktext">
+
+                               <div >
+
+                                <div class="form-group input-group">
+
+                               <input type="text" class="form-control"  ng-model="busca"
+                                placeholder="Pesquise uma Descricao: " size="30"	maxlength="30" />
+                                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+
+
+                                  </div>
+                                </div>
+                               </div>
+
+
+                            <br/>
+         <thead>
+            <tr>
+               <th>Foto</th>
+               <th>Modelo</th>
+               <th>cor</th>
+               <th>tamanho</th>
+               <th>valor</th>
+
+               <th>Editar</th>
+               <th>Deletar</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <!--<tr ng-repeat="m in ms|filter:busca" class="active">-->
+
+          <tr dir-paginate="m in ms|filter:busca |orderBy:sortKey:reverse|itemsPerPage:4">
+
+         <td>  <img ng-src="{{m.mimeType}},{{m.file}}" width="50" /> </td>
+          <td>{{ m.modelo }}</td>
+          <td>{{ m.cor }}</td>
+          <td>{{ m.tamanho }}</td>
+          <td>{{ m.valor | currency: 'R$'}}</td>
+
+
+
+          <td><button ng-click="editMorador(m)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+          <td><button ng-click="deleteModelo(m)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+
+
+
+
+
+
+       </tr>
+      </tbody>
+    </table>
+
+              <dir-pagination-controls max-size="4" boundary-links="true"></dir-pagination-controls>
+
+  </div>
+</div>
+</div>

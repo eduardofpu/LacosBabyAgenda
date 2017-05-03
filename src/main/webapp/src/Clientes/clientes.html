@@ -1,0 +1,237 @@
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-7 col-md-offset-3">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">Clientes</h3>
+                  </div>
+                  <div class="panel-body">
+
+                    <button type="button" ng-hide="showAddEditUser" ng-click="show()" class="btn  btn-primary  btn-lg  aw-btn-full-width">
+                      Novo Cliente
+                    </button>
+
+
+<button  ng-hide="showAddEditUser" type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-warning btn-lg  aw-btn-full-width">Voltar
+  <span  class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+      </button>
+
+<button type="button"  class="btn  btn-success  btn-lg  aw-btn-full-width"  ng-hide="showAddEditUser" >
+<a href="#/VisualizarClientes">Visualizar</a>
+<span  class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+</button>
+
+
+
+
+
+
+  <form  ng-hide="!showAddEditUser" name="form" role="form" >
+
+
+        <!-- Modal Dialog -->
+       <div class="modal fade" id="confirmSave" role="dialog" aria-labelledby="confirmDeleteLabe" aria-hidden="true">
+         <div class="modal-dialog">
+           <div class="modal-content">
+             <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+               <h4 class="modal-title">Cadastrar Clientes</h4>
+             </div>
+             <div class="modal-body">
+               <p>Deseja Salvar ?</p>
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+               <button type="button" class="btn btn-danger" data-dismiss="modal"  id="confirm"  ng-click="saveMorador(m)">Salvar</button>
+             </div>
+           </div>
+         </div>
+       </div>
+
+
+
+    <div ng-show="form.endereco.$dirty" >
+         <div  ng-show="form.endereco.$error.required" class="alert alert-danger" role="alert">Campo endereco é obrigatório </div>
+
+
+    </div>
+
+
+    <div ng-show="form.nome.$dirty" >
+      <div  ng-show="form.nome.$error.required" class="alert alert-danger" role="alert">
+     <span>Campo Nome é obrigatório</span></div>
+    </div>
+
+    <div ng-show="form.tel.$dirty" >
+      <div  ng-show="form.tel.$error.required" class="alert alert-danger" role="alert">
+     <span>Campo Telefone é obrigatório</span></div>
+    </div>
+
+    <div ng-show="form.numero.$dirty" >
+      <div  ng-show="form.numero.$error.required" class="alert alert-danger" role="alert">
+     <span>Campo número é obrigatório</span></div>
+    </div>
+
+    <div ng-show="form.bairro.$dirty" >
+      <div  ng-show="form.bairro.$error.required" class="alert alert-danger" role="alert">
+     <span>Campo bairro é obrigatório</span></div>
+    </div>
+
+
+
+
+
+
+
+
+  <div class="form-group">
+      <div ng-class="{'has-error': form.nome$touched && (form.nome.$error.required) , 'has-success':form.nome.$valid}">
+            <label for="nome">Nome:</label>
+                <input class="form-control"  type="text" placeholder="Nome" ng-model="m.nome"
+               required name="nome">
+             </div>
+             <span ng-show="form.nome.$touched && form.nome.$error.required" class="label label-danger">Ex: João de Oliveira</span>
+          </div>
+
+
+
+
+
+     <div class="form-group">
+       <div ng-class="{'has-error': form.tel$touched && (form.tel.$error.required || form.tel.$error.minlength) ,
+           'has-success':theForm.tel.$valid}">
+       <label>FONE:</label>
+            <input  name="tel" ng-minlength=14  maxlength="14" class="form-control"  type="text" placeholder="(34)9721-4011"
+           mask="(00)00000-0000"  ng-model="m.telefone" required>
+
+           <span ng-show="form.tel.$touched && form.tel.$error.minlength" class="label label-danger">
+             * TELEFONE : Iválido   faltam {{13- theForm.tel.$viewValue.length}}    Nº(s) </span>
+    </div>
+ </div>
+
+
+
+
+ <div class="form-group ">
+
+   <div  ng-class="{'has-error': form.endereco.$invalid ,'has-success': form.endereco.$valid}">
+   <label>Endereço:</label>
+   <input for="endereco" name="endereco"  type="text" class="form-control"    placeholder="Endereço" ng-model="m.endereco"
+    autofocus required >
+  </div>
+ </div>
+
+
+
+ <div class="form-group input-group">
+
+   <div ng-class="{'has-error': form.numero.$invalid ,'has-success': form.numero.$valid}">
+    <label>Número:</label>
+   <input for="numero" name="numero"  type="text" class="form-control"    placeholder="Número" ng-model="m.numero"
+    autofocus required >
+  </div>
+ </div>
+
+
+ <div class="form-group ">
+
+   <div  ng-class="{'has-error': form.bairro.$invalid ,'has-success': form.bairro.$valid}">
+    <label>Bairro:</label>
+   <input for="bairro" name="bairro"  type="text" class="form-control"    placeholder="Bairro" ng-model="m.bairro"
+    autofocus required >
+  </div>
+ </div>
+
+
+
+
+<!--ng-disabled="form.$invalid"-->
+      <button  class="btn btn-success btn-s"   type="submit" data-toggle="modal" data-target="#confirmSave">
+             <span class="glyphicon glyphicon-upload"></span> Salvar </button>
+
+
+
+                  <button type="reset"  class="btn btn-danger btn-s">
+               <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+         <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Voltar</button>
+
+
+</form>
+
+<br><br>
+
+  <div class="row">
+                   <div class="col-lg-50">
+
+                       <div class="table-responsive" ng-hide="showAddEditUser">
+
+
+
+
+
+                           <table class="table table-bordered table-hover table-striped">
+
+                             <div class="blocktext">
+
+                               <div >
+
+                                <div class="form-group input-group">
+
+                               <input type="text" class="form-control"  ng-model="busca"
+                                placeholder="Pesquise uma Descricao: " size="30"	maxlength="30" />
+                                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+
+
+                                  </div>
+                                </div>
+                               </div>
+
+
+                            <br/>
+         <thead>
+            <tr>
+               <th>Nome</th>
+               <th>Telefone</th>
+               <th>Endereco</th>
+               <th>Número</th>
+               <th>Bairro</th>
+
+               <th>Editar</th>
+               <th>Deletar</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <!--<tr ng-repeat="m in ms|filter:busca" class="active">-->
+
+          <tr dir-paginate="m in ms|filter:busca |orderBy:sortKey:reverse|itemsPerPage:4">
+
+
+
+          <td>{{ m.nome }}</td>
+          <td>{{ m.telefone }}</td>
+          <td>{{ m.endereco }}</td>
+          <td>{{ m.numero}}</td>
+          <td>{{ m.bairro }}</td>
+
+          <td><button ng-click="editMorador(m)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+
+           <td><button ng-click="deleteCliente(m)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+
+
+
+        </tr>
+
+
+
+      </tbody>
+    </table>
+
+              <dir-pagination-controls max-size="4" boundary-links="true"></dir-pagination-controls>
+
+  </div>
+</div>
+</div>

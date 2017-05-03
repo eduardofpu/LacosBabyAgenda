@@ -1,0 +1,236 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#botao").click(function(){
+		alert($("#selecao").html());
+	})
+});
+</script>
+
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-7 col-md-offset-3">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">Pedidos</h3>
+                  </div>
+                  <div class="panel-body">
+                    <button type="button" ng-hide="showAddEditUser" ng-click="show()" class="btn  btn-primary  btn-lg  aw-btn-full-width">
+                      Novo Pedido
+                    </button>
+
+<button  ng-hide="showAddEditUser" type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-warning btn-lg  aw-btn-full-width">Voltar
+  <span  class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+      </button>
+
+<button type="button"  class="btn  btn-success  btn-lg  aw-btn-full-width"  ng-hide="showAddEditUser" >
+<a href="#/VisualizarPedido">Visualizar</a>
+<span  class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+</button>
+
+<button type="button"  class="btn  btn-success  btn-lg  aw-btn-full-width"  ng-hide="showAddEditUser" >
+<a href="calculadora.html">Calcular</a>
+
+</button>
+
+
+
+  <form  ng-hide="!showAddEditUser" name="form" role="form" >
+
+		<!-- Modal Dialog -->
+	 <div class="modal fade" id="confirmSave" role="dialog" aria-labelledby="confirmDeleteLabe" aria-hidden="true">
+		 <div class="modal-dialog">
+			 <div class="modal-content">
+				 <div class="modal-header">
+					 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					 <h4 class="modal-title">Cadastrar Pedidos</h4>
+				 </div>
+				 <div class="modal-body">
+					 <p>Deseja Salvar ?</p>
+				 </div>
+				 <div class="modal-footer">
+					 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					 <button type="button" class="btn btn-danger" data-dismiss="modal"  id="confirm"  ng-click="saveMorador(m)">Salvar</button>
+				 </div>
+			 </div>
+		 </div>
+	 </div>
+
+
+
+  <button id="botao"></button>
+
+
+<div id="selecao">
+<font color="#B03060"><h4 ng-bind="m.clientes.nome"></h4></font>
+
+  <font color="#B03060">
+  <a href="https://www.google.com.br/maps?hl=pt-BR&tab=wl"><h4 ng-bind="m.clientes.endereco"></h4></a>
+
+</font>
+</div>
+
+
+<font color="#B03060"><h4 ng-bind="m.clientes.numero"></h4></font>
+<font color="#B03060"><h4 ng-bind="m.clientes.bairro"></h4></font>
+<font color="#B03060"><h4 ng-bind="m.clientes.telefone"></h4></font>
+
+    <div class="form-group">
+        <label>Clientes:</label>
+        <div>
+          <select  ng-model="m.clientes.id">
+						 <option value=""> Nome dos Clientes cadastrados</option>
+             <option ng-repeat="cliente in clientes" value="{{cliente.id}}">{{cliente.nome}}</option>
+           </select>
+        </div>
+      </div>
+
+
+ <div class="form-group">
+ <div class="form-group" ng-class="{'has-error': form.descricao.$invalid ,'has-success': form.descricao.$valid}">
+
+         <textarea class="form-control" style="font-size:20px; color:green"
+            rows="15" ng-model="m.descricao"
+
+              class="form-control" input type="text" placeholder="Registra as descrições aqui!"  name="descricao" required>
+              </textarea>
+       </div>
+
+
+
+        <div ng-show="form.descricao.$dirty" >
+             <div  ng-show="form.descricao.$error.required" class="alert alert-danger" role="alert">Campo descricao é obrigatório </div>
+        </div>
+
+
+
+  <div class="form-group input-group">
+
+    <div class="form-group" ng-class="{'has-error': form.valorTotal.$invalid ,'has-success': form.valorTotal.$valid}">
+      <label for="modelo">Valor Total:</label>
+    <input for="valorTotal" name="valorTotal"  type="text" class="form-control" id="resultado2"    placeholder="Valor Total" ng-model = "m.valorTotal"
+     autofocus required >
+   </div>
+  </div>
+
+
+
+  <div ng-show="form.valorTotal.$dirty" >
+    <div  ng-show="form.valorTotal.$error.required" class="alert alert-danger" role="alert">
+   <span>Campo Valor é obrigatório</span></div>
+  </div>
+
+
+
+
+  <font color="#B03060"><h4 >  {{ m.dataEntrega | date : "dd/MM/yyyy "  }} </h4></font>
+
+
+  <div class="form-group input-group">
+
+    <div class="form-group" ng-class="{'has-error': form.dataEntrega.$invalid ,'has-success': form.dataEntrega.$valid}">
+      <label for="modelo">Data Entrega:</label>
+    <input for="dataEntrega" name="dataEntrega"  type="date" class="form-control"    placeholder="Data Entraga" ng-model="m.dataEntrega"
+     autofocus required >
+   </div>
+  </div>
+
+
+
+      <div ng-show="form.dataEntrega.$dirty" >
+        <div  ng-show="form.dataEntrega.$error.required" class="alert alert-danger" role="alert">
+       <span>Campo data Entrega é obrigatório</span></div>
+      </div>
+      </div>
+
+
+
+
+			<!--ng-disabled="form.$invalid"-->
+			      <button  class="btn btn-success btn-s"   type="submit" data-toggle="modal" data-target="#confirmSave">
+			             <span class="glyphicon glyphicon-upload"></span> Salvar </button>
+
+
+
+                             <button type="reset"  class="btn btn-danger btn-s">
+                          <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+                    <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Voltar</button>
+
+
+  </form>
+  <br><br>
+
+    <div class="row" ng-hide="showAddEditUser">
+                     <div class="col-lg-50">
+
+                         <div class="table-responsive" >
+                             <table class="table table-bordered table-hover table-striped">
+
+                               <div class="blocktext">
+
+                                 <div >
+
+                                  <div class="form-group input-group">
+
+                                 <input type="text" class="form-control"  ng-model="busca"
+                                  placeholder="Pesquise uma Descricao: " size="30"	maxlength="30" />
+                                  <span class="input-group-addon"><i class="fa fa-search"></i></span>
+
+
+                                    </div>
+                                  </div>
+                                 </div>
+
+
+                              <br/>
+           <thead>
+           <tr>
+              <th>Cliente</th>
+              <th>Endereço</th>
+              <th>Número</th>
+              <th>Bairro</th>
+              <th>Telefone</th>
+              <th>Descrição</th>
+              <th>Valor</th>
+              <th>Data</th>
+              <th>Data Entrega</th>
+              <th>Editar</th>
+              <th>Deletar</th>
+
+       </tr>
+     </thead>
+     <tbody>
+     <tr dir-paginate="m in ms|filter:busca|orderBy:'clientes.nome' |orderBy:sortKey:reverse|itemsPerPage:4">
+     <!--  <tr ng-repeat="ap in aps|filter:busca" class="active">-->
+
+         <td>{{ m.clientes.nome }}</td>
+         <td>{{ m.clientes.endereco}}</td>
+         <td>{{ m.clientes.numero}}</td>
+         <td>{{ m.clientes.bairro }}</td>
+         <td>{{ m.clientes.telefone }}</td>
+         <td>{{ m.descricao }}</td>
+         <td>{{ m.valorTotal | currency: 'R$'}}</td>
+
+         <td>{{ m.registerDate | date : "dd/MM/yyyy 'as' h:mma"  }}</td>
+         <td>{{ m.dataEntrega | date : "dd/MM/yyyy "  }}</td>
+
+
+
+          <td><button ng-click="editMorador(m)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+
+           <td><button ng-click="deletePedido(m)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+
+
+
+
+        </tr>
+      </tbody>
+    </table>
+
+              <dir-pagination-controls max-size="4" boundary-links="true"></dir-pagination-controls>
+
+  </div>
+</div>
+</div>
