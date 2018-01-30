@@ -13,7 +13,7 @@ Instalar as seguintes ferramentas:
     3. Maven
     4. Docker
 
-##  2. Executar no linux  utilizando o docker pelo cmd
+##  2. Executar no linux  utilizando o docker ( pelo cmd )
 ```sh
     1- $ mvn clean
     2- $ mvn clean install
@@ -22,7 +22,7 @@ Instalar as seguintes ferramentas:
 ```
 
 
-##  2. Executar no windows  utilizando o sgbd postgres sem o docker pelo cmd
+##  3. Executar no windows  utilizando o sgbd postgres sem o docker ( pelo cmd )
 ```sh
     1-  mvn clean
     2-  mvn clean install
@@ -31,7 +31,7 @@ Instalar as seguintes ferramentas:
 ```
 
 
-##  3 Verificando a seguinte url
+##  4 Verificando a seguinte url
 
 ```sh
    http://localhost:8080
