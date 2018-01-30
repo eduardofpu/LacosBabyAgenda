@@ -21,10 +21,10 @@ Instalar as seguintes ferramentas:
 
 ```
 
-##  3 Verificando
+##  3 Verificando a seguinte url
 
 ```sh
-GET  http://localhost:8080
+   http://localhost:8080
 
 
 ```
