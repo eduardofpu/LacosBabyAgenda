@@ -24,6 +24,9 @@ Instalar as seguintes ferramentas:
 
 ##  3. Executar no windows  utilizando o sgbd postgres sem o docker ( pelo cmd )
 ```sh
+
+  Antes no arquivo:( application.properties ) altere o usuario e a senha do seu postgres:
+
     1-  mvn clean
     2-  mvn clean install
     
