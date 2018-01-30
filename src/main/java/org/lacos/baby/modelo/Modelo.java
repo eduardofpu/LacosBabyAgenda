@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
 import org.lacos.baby.utils.BaseEntity;
 
 
@@ -34,7 +35,8 @@ public class Modelo extends BaseEntity<Long>{
 	@Column(name="tb_valor", length = 10,nullable=false)
 	private BigDecimal valor;
 
-	@Lob
+	//@Lob
+	@Type(type="org.hibernate.type.BinaryType")
 	private byte[] file;
 
 	@Column(name = "mime_type", nullable = true)
