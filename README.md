@@ -17,7 +17,7 @@ Instalar as seguintes ferramentas:
 ```sh
     1- mvn clean
     2- mvn clean install
-    3- docker-compose up && mvn spring-boot:run
+    3- docker-compose up -d && mvn spring-boot:run
 
 ```
 
